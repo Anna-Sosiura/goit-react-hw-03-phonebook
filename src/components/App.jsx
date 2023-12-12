@@ -13,6 +13,18 @@ export class App extends Component {
     ],
     filter: '',
   };
+  componentDidMount() {
+    const localContacts = JSON.parse(localStorage.getItem('contacts'));
+    if (localContacts) {
+      this.setState({ todos: localContacts });
+    }
+  }
+  componentDidUpdate(prevProps, prevState) {
+    const { contacts } = this.state;
+    if (prevState.contacts !== contacts) {
+      localStorage.setItem('contacts', JSON.stringify(contacts));
+    }
+  }
 
   formSubmit = data => {
     const { contacts } = this.state;
