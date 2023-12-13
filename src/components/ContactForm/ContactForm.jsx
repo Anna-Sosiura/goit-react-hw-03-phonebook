@@ -1,14 +1,16 @@
 import { Component } from 'react';
 import { Form, AddBtn, Label, Input } from './ContactForm.styled';
+import { nanoid } from 'nanoid';
 class ContactForm extends Component {
   state = {
+    id: nanoid(),
     name: '',
     number: '',
   };
   handleSubmit = e => {
     e.preventDefault();
     this.props.onSubmit(this.state);
-    this.setState({ name: '', number: '' });
+    this.setState({ name: '', number: '', id: nanoid() });
   };
 
   hendleChange = e => {
